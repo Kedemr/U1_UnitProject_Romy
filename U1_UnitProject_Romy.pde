@@ -58,7 +58,14 @@ void pendantBigDraw()
 {
   ellipse(pendantX, pendantY, 500, 500);
   image(balance, width/2-150, height/2-100);
-  image(glow, glowX[i], glowY[i]);
+  for (int i=0; i<circleNumber; i++)
+  {
+    image(glow, glowX[i], glowY[i]);
+    if (isCollision())
+    {
+      background(0);
+    }
+  }
   /* image(glow, width/2-200, height/2);
    image(glow, width/2-200, height/2-50);
    image(glow, width/2-200, height/2+50);
@@ -66,4 +73,16 @@ void pendantBigDraw()
    {
    background(0); 
    }*/
+}
+
+boolean isCollision()
+{
+  for (int i=0; i<circleNumber; i++)
+  {
+    if(dist(mouseX, mouseY, glowX[i],glowY[i])<20)
+    {
+      return true;
+    }
+  }
+  return false;
 }
