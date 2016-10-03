@@ -8,7 +8,7 @@ PImage balance;
 PImage glowCircle;
 PImage glowCircleSpecial;
 int sceneNumber = 0;
-int circleNumber = 6;
+int circleNumber = 100;
 int glowCircleX[];
 int glowCircleY[];
 int glowCircleSpecialX;
@@ -16,7 +16,7 @@ int glowCircleSpecialY;
 int circleRainX[];
 int circleRainY[];
 int circleRainR[];
-int RainNumber = 100;
+
 void setup()
 {
   fullScreen();
@@ -42,14 +42,14 @@ void setup()
   circleRainX = new int[circleNumber];
   circleRainY = new int[circleNumber];
   circleRainR = new int[circleNumber];
-  
-    for (int i=0; i< RainNumber; i++)
+
+  for (int i=0; i< circleNumber; i++)
   {
     circleRainX[i] = 10;
     circleRainY[i] = 10;
     circleRainR[i] = 10;
   }
-  colorMode(HSB);
+
 }
 
 void draw()
@@ -77,10 +77,9 @@ void pendantBigDraw()
 {
   ellipse(pendantX, pendantY, 500, 500);
   image(balance, width/2-150, height/2-100);
-  for (int i=0; i<circleNumber; i< RainNumber; i++)
+  for (int i=0; i<circleNumber; i++)
   {
-    image(glowCircleSpecial, glowCircleSpecialX, glowCircleSpecialY);
-    //  image(glowCircle, glowCircleX[i], glowCircleY[i]); // click on this one
+    image(glowCircleSpecial, glowCircleSpecialX, glowCircleSpecialY);  // click on this one
     image(glowCircle, glowCircleX[i]-50, glowCircleY[i]+80);
     image(glowCircle, glowCircleX[i]-20, glowCircleY[i]+80);
     image(glowCircle, glowCircleX[i]+30, glowCircleY[i]+80);
@@ -93,30 +92,31 @@ void pendantBigDraw()
     if (dist(mouseX, mouseY, glowCircleSpecialX, glowCircleSpecialY)<30)
     {
       background(0);
-        for (int i=0; i< RainNumber; i++)
-  {
-    fill(random(0, 500), random(0, 500), random(0, 500));
-    int directionX = (int)random(-1, 2);
-    int directionY = (int)random(-1, 2);
-    ellipse(circleRainX[i], circleRainY[i], circleRainR[i], circleRainR[i]);
-    circleRainX[i] = circleRainX[i] + (directionX*10);
-    circleRainY[i] = circleRainY[i] + (directionY*10); 
-    if (circleRainY[i]>height)
-    {
-      circleRainY[i] = 0;
-    }
-    if (circleRainX[i]>width)
-    {
-      circleRainX[i] = 0;
+
+      fill(255,0,0);
+      // fill(359, random(89, 96), random(85, 99));
+      int directionX = (int)random(-1, 2);
+      int directionY = (int)random(-1, 2);
+      ellipse(circleRainX[i], circleRainY[i], circleRainR[i], circleRainR[i]);
+      circleRainX[i] = circleRainX[i] + (directionX*10);
+      circleRainY[i] = circleRainY[i] + (directionY*10); 
+      if (circleRainY[i]>height)
+      {
+        circleRainY[i] = 0;
+      }
+      if (circleRainX[i]>width)
+      {
+        circleRainX[i] = 0;
+      }
     }
   }
-    }
 
 
-    //image(glowCircle, glowCircleX[i]-50, glowCircleY[i]);
-  }
-  //isCollision();
+  //image(glowCircle, glowCircleX[i]-50, glowCircleY[i]);
 }
+//isCollision();
+
+
 
 /*  image(glowCircle, width/2-200, height/2-50);
  image(glowCircle, width/2-200, height/2+50);
@@ -130,7 +130,7 @@ boolean isCollision()
   {
     if (dist(mouseX, mouseY, glowCircleX[i], glowCircleY[i])<20 && sceneNumber == 1)
     {
-      background(0);
+
       return true;
     }
   }
