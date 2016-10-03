@@ -16,7 +16,8 @@ int glowCircleSpecialY;
 int circleRainX[];
 int circleRainY[];
 int circleRainR[];
-
+int circleRainX1;
+int circleRainY1;
 void setup()
 {
   fullScreen();
@@ -49,7 +50,8 @@ void setup()
     circleRainY[i] = 10;
     circleRainR[i] = 10;
   }
-
+  circleRainX1 = width;
+  circleRainY1 = 0;
 }
 
 void draw()
@@ -93,13 +95,18 @@ void pendantBigDraw()
     {
       background(0);
 
-      fill(255,0,0);
+      fill(255, 0, 0);
       // fill(359, random(89, 96), random(85, 99));
-      int directionX = (int)random(-1, 2);
-      int directionY = (int)random(-1, 2);
+      int directionX = (int)random(1, 5);
+      int directionY = (int)random(1, 5);
       ellipse(circleRainX[i], circleRainY[i], circleRainR[i], circleRainR[i]);
+      ellipse(circleRainX1, circleRainY1, circleRainR[i], circleRainR[i]);
       circleRainX[i] = circleRainX[i] + (directionX*10);
       circleRainY[i] = circleRainY[i] + (directionY*10); 
+      int directionX1 = (int)random(-2, 0);
+      int directionY1 = (int)random(-1, 2);
+      circleRainX1 = circleRainX1 + (directionX1);
+      circleRainY1 = circleRainY1 + (directionY1);
       if (circleRainY[i]>height)
       {
         circleRainY[i] = 0;
@@ -107,6 +114,14 @@ void pendantBigDraw()
       if (circleRainX[i]>width)
       {
         circleRainX[i] = 0;
+      }
+        if (circleRainY1>height)
+      {
+        circleRainY1 = 0;
+      }
+      if (circleRainX1>width)
+      {
+        circleRainX1 = 0;
       }
     }
   }
