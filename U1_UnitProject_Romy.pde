@@ -1,5 +1,5 @@
 /* My Unit project starts off with a necklace and a pendant. Once the pendant is clicked, it zooms into a balance
- with a few glowing circles on one side. When these circles are clicked a line appears above the scale.
+ with a few glowing circles on one side. When these circles are hovered over, two red dots flow down the screen.
  */
 int pendantX;
 int pendantY;
@@ -117,26 +117,19 @@ void pendantBigDraw()
       }
         if (circleRainY1>height)
       {
-        circleRainY1 = 0;
+        circleRainY1 = (int)random(0,height);
       }
       if (circleRainX1>width)
       {
-        circleRainX1 = 0;
+        circleRainX1 = (int)random(0,width);
       }
     }
   }
 
 
-  //image(glowCircle, glowCircleX[i]-50, glowCircleY[i]);
+
 }
-//isCollision();
 
-
-
-/*  image(glowCircle, width/2-200, height/2-50);
- image(glowCircle, width/2-200, height/2+50);
- if(mouseX == width/2-200 && mouseY == height/2 && mousePressed)
- */
 
 
 boolean isCollision()
@@ -161,15 +154,3 @@ boolean isCollisionSmallPendant()
   }
   return false;
 }
-
-/*
-readMe
- <h1> The Way of the Scale </h1>
- 
- <h2> Description: My Unit project starts off with a necklace and a pendant. Once the pendant is clicked, it zooms into a balance
- with a few glowing circles on one side. When these circles are clicked a line appears above the scale.</h2>
- <h2> Inspiration: I found out from the past few projects that I enjoy usng circles, this time I used pictures instead though, to 
- challenge myself, as I have not used many pictures before in my projects. I used watchout4snakes to find different words that
- gave me sparks of part of an idea and after around 10 words I put this idea together. </h2>
- <h2> Screenshots: </h2>
- */
