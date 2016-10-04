@@ -16,8 +16,8 @@ int glowCircleSpecialY;
 int circleRainX[];
 int circleRainY[];
 int circleRainR[];
-int circleRainX1;
-int circleRainY1;
+int circleRainX1[];
+int circleRainY1[];
 void setup()
 {
   fullScreen();
@@ -43,15 +43,17 @@ void setup()
   circleRainX = new int[circleNumber];
   circleRainY = new int[circleNumber];
   circleRainR = new int[circleNumber];
+  circleRainX1 = new int[circleNumber];
+  circleRainY1 = new int[circleNumber];
 
   for (int i=0; i< circleNumber; i++)
   {
     circleRainX[i] = 10;
     circleRainY[i] = 10;
     circleRainR[i] = 20;
+    circleRainX1[i] = width;
+    circleRainY1[i] = 0;
   }
-  circleRainX1 = width;
-  circleRainY1 = 0;
 }
 
 void draw()
@@ -90,23 +92,19 @@ void pendantBigDraw()
     image(glowCircle, glowCircleX[i]+15, glowCircleY[i]+55);
     image(glowCircle, glowCircleX[i]-35, glowCircleY[i]+55);// end of second row from bottom
     image(glowCircle, glowCircleX[i], glowCircleY[i]+30);// start of third row from bottom
-    image(glowCircle, glowCircleX[i]-20, glowCircleY[i]+30); 
+    image(glowCircle, glowCircleX[i]-20, glowCircleY[i]+30); // end of third row
     if (dist(mouseX, mouseY, glowCircleSpecialX, glowCircleSpecialY)<30)
     {
       background(0);
-
       fill(255, 0, 0);
-      // fill(359, random(89, 96), random(85, 99));
       int directionX = (int)random(1, 5);
       int directionY = (int)random(1, 5);
       ellipse(circleRainX[i], circleRainY[i], circleRainR[i], circleRainR[i]);
-      ellipse(circleRainX1, circleRainY1, circleRainR[i], circleRainR[i]);
-      circleRainX[i] = circleRainX[i] + (directionX*10);
-      circleRainY[i] = circleRainY[i] + (directionY*10); 
-      int directionX1 = (int)random(-2, 0);
-      int directionY1 = (int)random(-1, 2);
-      circleRainX1 = circleRainX1 + (directionX1);
-      circleRainY1 = circleRainY1 + (directionY1);
+      ellipse(circleRainX1[i], circleRainY1[i], circleRainR[i], circleRainR[i]);
+      circleRainX[i] = circleRainX[i] + (directionX*50);
+      circleRainY[i] = circleRainY[i] + (directionY*50); 
+      circleRainX1[i] = circleRainX1[i] + (directionX*50);
+      circleRainY1[i] = circleRainY1[i] + (directionY*50);
       if (circleRainY[i]>height)
       {
         circleRainY[i] = 0;
@@ -115,35 +113,18 @@ void pendantBigDraw()
       {
         circleRainX[i] = 0;
       }
-        if (circleRainY1>height)
+      if (circleRainY1[i]>height)
       {
-        circleRainY1 = (int)random(0,height);
+        circleRainY1[i] = 0;
       }
-      if (circleRainX1>width)
+      if (circleRainX1[i]>width)
       {
-        circleRainX1 = (int)random(0,width);
+        circleRainX1[i] = 0;
       }
     }
   }
-
-
-
 }
 
-
-
-boolean isCollision()
-{
-  for (int i=0; i<circleNumber; )
-  {
-    if (dist(mouseX, mouseY, glowCircleX[i], glowCircleY[i])<20 && sceneNumber == 1)
-    {
-
-      return true;
-    }
-  }
-  return false;
-}
 
 boolean isCollisionSmallPendant()
 {
