@@ -48,7 +48,7 @@ void setup()
   {
     circleRainX[i] = 10;
     circleRainY[i] = 10;
-    circleRainR[i] = 10;
+    circleRainR[i] = 20;
   }
   circleRainX1 = width;
   circleRainY1 = 0;
